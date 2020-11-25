@@ -1,5 +1,5 @@
 {
-  "name": "fykosak/fksdb-downloader",
+  "name": "fykosak/fksdb-downloader-core",
   "type": "library",
   "require": {
     "php": ">=7.4",
