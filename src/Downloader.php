@@ -2,6 +2,7 @@
 
 namespace Fykosak\FKSDBDownloaderCore;
 
+use Fykosak\FKSDBDownloaderCore\Request\IRequest;
 use SoapClient;
 use SoapFault;
 use SoapHeader;
@@ -41,61 +42,12 @@ class Downloader {
         $this->client->__setSoapHeaders($headers);
     }
 
-    public function createExportRequest(string $qid, array $parameters, int $formatVersion = 2): string {
-        $parametersXML = [];
-        foreach ($parameters as $name => $value) {
-            $parametersXML[] = [
-                'name' => $name,
-                '_' => $value,
-            ];
-        }
-        $request = [
-            'qid' => $qid,
-            'parameter' => $parametersXML,
-        ];
-        $request['format-version'] = $formatVersion;
-        return $this->download('GetExport', $request);
-    }
-
-    public function createResultsDetailRequest(int $contest, int $year, int $series): string {
-        return $this->download('GetResults', [
-            'contest' => $contest,
-            'year' => $year,
-            'detail' => $series,
-        ]);
-    }
-
-    public function createResultsCummulativeRequest(int $contest, int $year, array $series): string {
-        return $this->download('GetResults', [
-            'contest' => $contest,
-            'year' => $year,
-            'cumulatives' => [
-                'cumulative' => implode(' ', $series),
-            ],
-        ]);
-    }
-
-    public function createTeamList(int $eventId): string {
-        return $this->download('GetEvent', [
-            'teamList' => '',
-            'eventId' => $eventId,
-        ]);
-    }
-
-    public function createEventList(int $eventTypeId): string {
-        return $this->download('GetEvent', [
-            'eventList' => '',
-            'eventTypeId' => $eventTypeId,
-        ]);
-    }
-
     /**
-     * @param string $methodName
-     * @param mixed $request
-     * @return string response XML
+     * @param IRequest $request
+     * @return string
      */
-    public function download(string $methodName, array $request): string {
-        $this->client->{$methodName}($request);
+    public function download(IRequest $request): string {
+        $this->client->{$request->getMethod()}($request->getParams());
         return $this->client->__getLastResponse();
     }
 }
