@@ -8,7 +8,7 @@ use SoapFault;
 use SoapHeader;
 use stdClass;
 
-class Downloader {
+class FKSDBDownloader {
 
     private SoapClient $client;
 
@@ -42,10 +42,6 @@ class Downloader {
         $this->client->__setSoapHeaders($headers);
     }
 
-    /**
-     * @param IRequest $request
-     * @return string
-     */
     public function download(IRequest $request): string {
         $this->client->{$request->getMethod()}($request->getParams());
         return $this->client->__getLastResponse();

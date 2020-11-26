@@ -2,11 +2,26 @@
 
 namespace Fykosak\FKSDBDownloaderCore\Request;
 
-class TeamListRequest extends Request {
+class TeamListRequest implements IRequest {
+
+    private int $eventId;
+
     public function __construct(int $eventId) {
-        parent::__construct('teamList.' . $eventId, 'GetEvent', [
+        $this->eventId = $eventId;
+    }
+
+    public function getParams(): array {
+        return [
+            'eventId' => $this->eventId,
             'teamList' => '',
-            'eventId' => $eventId,
-        ]);
+        ];
+    }
+
+    public function getCacheKey(): string {
+        return 'teamList.' . $this->eventId;
+    }
+
+    public function getMethod(): string {
+        return 'GetEvent';
     }
 }
