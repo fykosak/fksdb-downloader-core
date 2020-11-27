@@ -4,24 +4,24 @@ namespace Fykosak\FKSDBDownloaderCore\Request;
 
 class EventListRequest implements IRequest {
 
-    private int $eventTypeId;
+    private array $eventTypeIds;
 
-    public function __construct(int $eventTypeId) {
-        $this->eventTypeId = $eventTypeId;
+    public function __construct(array $eventTypeIds) {
+        $this->eventTypeIds = $eventTypeIds;
     }
 
     public function getParams(): array {
         return [
             'eventList' => '',
-            'eventTypeId' => $this->eventTypeId,
+            'eventTypeId' => $this->eventTypeIds,
         ];
     }
 
     public function getCacheKey(): string {
-        return 'eventList.' . $this->eventTypeId;
+        return 'eventList.' . join('-', $this->eventTypeIds);
     }
 
     public function getMethod(): string {
-        return 'GetEventList';
+        return 'GetEventsList';
     }
 }
