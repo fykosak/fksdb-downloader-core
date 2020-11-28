@@ -2,7 +2,7 @@
 
 namespace Fykosak\FKSDBDownloaderCore;
 
-use Fykosak\FKSDBDownloaderCore\Request\IRequest;
+use Fykosak\FKSDBDownloaderCore\Requests\IRequest;
 use SoapClient;
 use SoapFault;
 use SoapHeader;

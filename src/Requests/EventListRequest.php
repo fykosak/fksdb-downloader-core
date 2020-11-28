@@ -1,6 +1,6 @@
 <?php
 
-namespace Fykosak\FKSDBDownloaderCore\Request;
+namespace Fykosak\FKSDBDownloaderCore\Requests;
 
 class EventListRequest implements IRequest {
 
@@ -12,13 +12,12 @@ class EventListRequest implements IRequest {
 
     public function getParams(): array {
         return [
-            'eventList' => '',
-            'eventTypeId' => $this->eventTypeIds,
+            'eventTypeIds' => $this->eventTypeIds,
         ];
     }
 
     public function getCacheKey(): string {
-        return 'eventList.' . join('-', $this->eventTypeIds);
+        return sprintf('eventList.%s', join('-', $this->eventTypeIds));
     }
 
     public function getMethod(): string {

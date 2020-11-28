@@ -1,5 +1,6 @@
 {
   "name": "fykosak/fksdb-downloader-core",
+  "description": "",
   "type": "library",
   "require": {
     "php": ">=7.4",
@@ -11,5 +12,10 @@
       "name": "Michal Mišo Červeňák",
       "email": "miso@fykos.cz"
     }
-  ]
+  ],
+  "autoload": {
+    "psr-4": {
+      "Fykosak\\FKSDBDownloaderCore": "src/"
+    }
+  }
 }

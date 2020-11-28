@@ -1,6 +1,6 @@
 <?php
 
-namespace Fykosak\FKSDBDownloaderCore\Request;
+namespace Fykosak\FKSDBDownloaderCore\Requests;
 
 class ExportRequest implements IRequest {
 
