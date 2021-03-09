@@ -2,7 +2,7 @@
 
 namespace Fykosak\FKSDBDownloaderCore\Requests;
 
-class ExportRequest implements IRequest {
+class ExportRequest implements Request {
 
     private string $qid;
     private array $parameters;

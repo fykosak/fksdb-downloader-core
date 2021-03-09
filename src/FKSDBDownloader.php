@@ -2,7 +2,7 @@
 
 namespace Fykosak\FKSDBDownloaderCore;
 
-use Fykosak\FKSDBDownloaderCore\Requests\IRequest;
+use Fykosak\FKSDBDownloaderCore\Requests\Request;
 use SoapClient;
 use SoapFault;
 use SoapHeader;
@@ -42,7 +42,7 @@ class FKSDBDownloader {
         $this->client->__setSoapHeaders($headers);
     }
 
-    public function download(IRequest $request): string {
+    public function download(Request $request): string {
         $this->client->{$request->getMethod()}($request->getParams());
         return $this->client->__getLastResponse();
     }

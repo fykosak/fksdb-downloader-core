@@ -2,9 +2,9 @@
 
 namespace Fykosak\FKSDBDownloaderCore\Requests\Event;
 
-use Fykosak\FKSDBDownloaderCore\Requests\IRequest;
+use Fykosak\FKSDBDownloaderCore\Requests\Request;
 
-abstract class AbstractEventRequest implements IRequest {
+abstract class AbstractEventRequest implements Request {
 
     protected int $eventId;
 

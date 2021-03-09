@@ -2,9 +2,9 @@
 
 namespace Fykosak\FKSDBDownloaderCore\Requests\Results;
 
-use Fykosak\FKSDBDownloaderCore\Requests\IRequest;
+use Fykosak\FKSDBDownloaderCore\Requests\Request;
 
-abstract class AbstractResultsRequest implements IRequest {
+abstract class AbstractResultsRequest implements Request {
 
     protected int $contestId;
     protected int $year;

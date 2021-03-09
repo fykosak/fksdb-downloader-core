@@ -2,7 +2,7 @@
 
 namespace Fykosak\FKSDBDownloaderCore\Requests;
 
-interface IRequest {
+interface Request {
 
     public function getMethod(): string;
 
