@@ -21,7 +21,8 @@
   ],
   "autoload": {
     "psr-4": {
-      "Fykosak\\FKSDBDownloaderCore\\": "src/"
+      "Fykosak\\FKSDBDownloaderCore\\": "src/",
+      "Fykosak\\FKSDBDownloaderCore\\Tools\\": "tools/"
     }
   }
 }
