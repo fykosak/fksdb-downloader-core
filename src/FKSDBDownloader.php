@@ -10,7 +10,7 @@ use stdClass;
 
 class FKSDBDownloader {
 
-    private SoapClient $client;
+    public SoapClient $client;
 
     /**
      * Downloader constructor.
