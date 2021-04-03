@@ -2,7 +2,7 @@
 
 namespace Fykosak\FKSDBDownloaderCore\Requests\Event;
 
-class ParticipantsListRequest extends AbstractEventRequest {
+class ParticipantListRequest extends AbstractEventRequest {
 
     private array $statuses;
 
@@ -13,11 +13,11 @@ class ParticipantsListRequest extends AbstractEventRequest {
 
     public function getParams(): array {
         $params = parent::getParams();
-        $params['participantsList'] = $this->statuses;
+        $params['participantList'] = $this->statuses;
         return $params;
     }
 
     public function getCacheKey(): string {
-        return sprintf('participantsList.%s.%s', $this->eventId, count($this->statuses) ? ('.' . join('-', $this->statuses)) : 'all');
+        return sprintf('participantList.%s.%s', $this->eventId, count($this->statuses) ? join('-', $this->statuses) : 'all');
     }
 }

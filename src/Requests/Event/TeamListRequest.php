@@ -2,7 +2,7 @@
 
 namespace Fykosak\FKSDBDownloaderCore\Requests\Event;
 
-class TeamsListRequest extends AbstractEventRequest {
+class TeamListRequest extends AbstractEventRequest {
 
     private array $statuses;
 
@@ -13,7 +13,7 @@ class TeamsListRequest extends AbstractEventRequest {
 
     public function getParams(): array {
         $params = parent::getParams();
-        $params['teamsList'] = $this->statuses;
+        $params['teamList'] = $this->statuses;
         return $params;
     }
 

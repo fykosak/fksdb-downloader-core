@@ -29,6 +29,6 @@ class OrganizersRequest implements Request {
     }
 
     public function getCacheKey(): string {
-        return sprintf('signatures.%s-%s', $this->contestId, $this->year ?? 'all');
+        return sprintf('orgs.%s-%s', $this->contestId, $this->year ?? 'all');
     }
 }
