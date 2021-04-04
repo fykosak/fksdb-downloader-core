@@ -4,7 +4,7 @@ namespace Fykosak\FKSDBDownloaderCore\Requests\Event;
 
 use Fykosak\FKSDBDownloaderCore\Requests\Request;
 
-abstract class AbstractEventRequest implements Request {
+abstract class EventRequest implements Request {
 
     protected int $eventId;
 

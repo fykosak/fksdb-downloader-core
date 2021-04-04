@@ -2,7 +2,7 @@
 
 namespace Fykosak\FKSDBDownloaderCore\Requests\Event;
 
-class TeamListRequest extends AbstractEventRequest {
+class TeamListRequest extends EventRequest {
 
     private array $statuses;
 
