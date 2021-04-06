@@ -1,7 +1,7 @@
 <?php
 
 use Fykosak\FKSDBDownloaderCore\FKSDBDownloader;
-use Fykosak\FKSDBDownloaderCore\Requests\Event\ScheduleListRequest;
+use Fykosak\FKSDBDownloaderCore\Requests\SignaturesRequest;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 require_once __DIR__ . '/pass.php';
@@ -9,8 +9,8 @@ require_once __DIR__ . '/pass.php';
 $downloader = new FKSDBDownloader(FKSDB_WSDL, FKSDB_USER, FKSDB_PASS);
 
 try {
-    $result = $downloader->download(new ScheduleListRequest(145, ['visa']));
-} catch (Throwable$exception) {
+    $result = $downloader->download(new SignaturesRequest(1));
+} catch (Throwable $exception) {
 }
 
 header('Content-Type: text/xml');

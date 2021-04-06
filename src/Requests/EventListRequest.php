@@ -2,7 +2,7 @@
 
 namespace Fykosak\FKSDBDownloaderCore\Requests;
 
-class EventsListRequest implements Request {
+class EventListRequest implements Request {
 
     private array $eventTypeIds;
 
@@ -21,6 +21,6 @@ class EventsListRequest implements Request {
     }
 
     public function getMethod(): string {
-        return 'GetEventsList';
+        return 'GetEventList';
     }
 }
