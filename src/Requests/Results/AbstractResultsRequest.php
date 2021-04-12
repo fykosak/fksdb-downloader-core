@@ -6,17 +6,17 @@ use Fykosak\FKSDBDownloaderCore\Requests\Request;
 
 abstract class AbstractResultsRequest implements Request {
 
-    protected int $contestId;
+    protected string $contestName;
     protected int $year;
 
-    public function __construct(int $contestId, int $year) {
-        $this->contestId = $contestId;
+    public function __construct(string $contestName, int $year) {
+        $this->contestName = $contestName;
         $this->year = $year;
     }
 
     public function getParams(): array {
         return [
-            'contest' => $this->contestId,
+            'contest' => $this->contestName,
             'year' => $this->year,
         ];
     }

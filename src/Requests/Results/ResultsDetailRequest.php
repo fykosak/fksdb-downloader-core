@@ -6,8 +6,8 @@ class ResultsDetailRequest extends AbstractResultsRequest {
 
     private int $series;
 
-    public function __construct(int $contestId, int $year, int $series) {
-        parent::__construct($contestId, $year);
+    public function __construct(string $contestName, int $year, int $series) {
+        parent::__construct($contestName, $year);
         $this->series = $series;
     }
 
@@ -18,6 +18,6 @@ class ResultsDetailRequest extends AbstractResultsRequest {
     }
 
     public function getCacheKey(): string {
-        return sprintf('result.detail.%s.%s.%s', $this->contestId, $this->year, $this->series);
+        return sprintf('result.detail.%s.%s.%s', $this->contestName, $this->year, $this->series);
     }
 }
