@@ -11,6 +11,6 @@ class EventDetailRequest extends EventRequest {
     }
 
     public function getCacheKey(): string {
-        return sprintf('eventDetail.%i', $this->eventId);
+        return sprintf('eventDetail.%s', $this->eventId);
     }
 }
