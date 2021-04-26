@@ -1,15 +1,17 @@
 <?php
 
-namespace Fykosak\FKSDBDownloaderCore\Requests\Event;
+namespace Fykosak\FKSDBDownloaderCore\Requests;
 
-use Fykosak\FKSDBDownloaderCore\Requests\Request;
-
-abstract class EventRequest implements Request {
+class EventRequest implements Request {
 
     protected int $eventId;
 
     public function __construct(int $eventId) {
         $this->eventId = $eventId;
+    }
+
+    public function getCacheKey(): string {
+        return sprintf('eventDetail.%s', $this->eventId);
     }
 
     public function getParams(): array {
