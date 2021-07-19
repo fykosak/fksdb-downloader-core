@@ -2,23 +2,27 @@
 
 namespace Fykosak\FKSDBDownloaderCore\Requests;
 
-class ExportRequest implements Request {
+class ExportRequest implements Request
+{
 
     private string $qid;
     private array $parameters;
     private int $formatVersion;
 
-    public function __construct(string $qid, array $parameters, int $formatVersion = 2) {
+    public function __construct(string $qid, array $parameters, int $formatVersion = 2)
+    {
         $this->qid = $qid;
         $this->parameters = $parameters;
         $this->formatVersion = $formatVersion;
     }
 
-    public function getCacheKey(): string {
+    public function getCacheKey(): string
+    {
         return 'export.' . $this->qid . '.' . md5(join(':', $this->parameters));
     }
 
-    public function getParams(): array {
+    public function getParams(): array
+    {
         $parametersXML = [];
         foreach ($this->parameters as $name => $value) {
             $parametersXML[] = [
@@ -34,7 +38,8 @@ class ExportRequest implements Request {
         return $request;
     }
 
-    public function getMethod(): string {
+    public function getMethod(): string
+    {
         return 'GetExport';
     }
 }
