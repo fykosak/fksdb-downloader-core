@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Fykosak\FKSDBDownloaderCore\Requests\Results;
 
 use Fykosak\FKSDBDownloaderCore\Requests\Request;

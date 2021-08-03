@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Fykosak\FKSDBDownloaderCore;
 
 use Fykosak\FKSDBDownloaderCore\Requests\Request;
@@ -10,11 +12,6 @@ class FKSDBDownloader
     private \SoapClient $client;
     private array $params;
 
-    /**
-     * @param string $wsdl
-     * @param string $username
-     * @param string $password
-     */
     public function __construct(string $wsdl, string $username, string $password)
     {
         $this->params = [$wsdl, $username, $password];
@@ -29,17 +26,21 @@ class FKSDBDownloader
     {
         if (!isset($this->client)) {
             [$wsdl, $username, $password] = $this->params;
-            $this->client = new \SoapClient($wsdl, [
-                'trace' => true,
-                'exceptions' => true,
-                'stream_context' => stream_context_create(
-                    [
-                        'ssl' => [
-                            'verify_peer' => false,
-                            'verify_peer_name' => false,
+            $this->client = new \SoapClient(
+                $wsdl,
+                [
+                    'trace' => true,
+                    'exceptions' => true,
+                    'stream_context' => stream_context_create(
+                        [
+                            'ssl' => [
+                                'verify_peer' => false,
+                                'verify_peer_name' => false,
+                            ],
                         ],
-                    ]),
-            ]);
+                    ),
+                ],
+            );
 
             $credentials = new \stdClass();
             $credentials->username = $username;

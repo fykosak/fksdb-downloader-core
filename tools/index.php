@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use Fykosak\FKSDBDownloaderCore\FKSDBDownloader;
 use Fykosak\FKSDBDownloaderCore\Requests\EventRequest;
 
