@@ -21,7 +21,6 @@ class FKSDBDownloader
 
     /**
      * Client lazy loading
-     * @return \SoapClient
      * @throws \SoapFault
      */
     public function getClient(): \SoapClient
@@ -43,7 +42,6 @@ class FKSDBDownloader
                     ),
                 ],
             );
-
             $credentials = new \stdClass();
             $credentials->username = $username;
             $credentials->password = $password;
@@ -56,8 +54,6 @@ class FKSDBDownloader
     }
 
     /**
-     * @param Request $request
-     * @return string
      * @throws \SoapFault
      */
     public function download(Request $request): string
@@ -87,7 +83,10 @@ class FKSDBDownloader
             $this->jsonApi .
             $request->getMethod() .
             '?' .
-            http_build_query($data), false, $context);
+            http_build_query($data),
+            false,
+            $context
+        );
         restore_error_handler();
         if ($result === false) {
             $result = error_get_last();
