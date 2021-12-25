@@ -2,3 +2,4 @@
 define('FKSDB_USER', '');
 define('FKSDB_PASS', '');
 define('FKSDB_WSDL', '');
+define('FKSDB_API', '');

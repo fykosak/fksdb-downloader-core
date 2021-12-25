@@ -9,15 +9,12 @@ class FKSDBDownloader
 
     private \SoapClient $client;
     private array $params;
+    private string $jsonApi;
 
-    /**
-     * @param string $wsdl
-     * @param string $username
-     * @param string $password
-     */
-    public function __construct(string $wsdl, string $username, string $password)
+    public function __construct(string $wsdl, string $username, string $password, string $jsonApi)
     {
         $this->params = [$wsdl, $username, $password];
+        $this->jsonApi = $jsonApi;
     }
 
     /**
@@ -45,7 +42,7 @@ class FKSDBDownloader
             $credentials->username = $username;
             $credentials->password = $password;
 
-            $header = new \SoapHeader('http://fykos.cz/xml/ws/service', 'AuthenticationCredentials', $credentials);
+            $header = new \SoapHeader('https://fykos.cz/xml/ws/service', 'AuthenticationCredentials', $credentials);
             $headers = [$header];
             $this->client->__setSoapHeaders($headers);
         }
@@ -61,5 +58,56 @@ class FKSDBDownloader
     {
         $this->getClient()->{$request->getMethod()}($request->getParams());
         return $this->client->__getLastResponse();
+    }
+
+    public function downloadJSON(Request $request): string
+    {
+        [, $username, $password] = $this->params;
+        $options = [
+            'http' => [
+                'header' => "Content-type: application/x-www-form-urlencoded\r\n" .
+                    "Authorization: Basic " . base64_encode($username . ':' . $password),
+                'method' => 'GET',
+                'content' => http_build_query($request->getParams()),
+            ],
+        ];
+        $context = stream_context_create($options);
+        $data = [];
+        foreach ($request->getParams() as $key => $value) {
+            $data[$this->pascalToSnakeCase($key)] = $value;
+        }
+
+        $result = file_get_contents(
+            $this->jsonApi .
+            $request->getMethod() .
+            '?' .
+            http_build_query($data), false, $context);
+        restore_error_handler();
+        if ($result === false) {
+            $result = error_get_last();
+        }
+        return $result;
+    }
+
+    private function pascalToSnakeCase(string $string): string
+    {
+        return implode(
+            '_',
+            array_map(
+                fn($part) => lcfirst($part),
+                preg_split('/(?=[A-Z])/', $string, -1, PREG_SPLIT_NO_EMPTY)
+            )
+        );
+    }
+
+    private function pascalToKebabCase(string $string): string
+    {
+        return implode(
+            '-',
+            array_map(
+                fn($part) => lcfirst($part),
+                preg_split('/(?=[A-Z])/', $string, -1, PREG_SPLIT_NO_EMPTY)
+            )
+        );
     }
 }
