@@ -8,7 +8,6 @@ use Fykosak\FKSDBDownloaderCore\Requests\Request;
 
 class FKSDBDownloader
 {
-
     private \SoapClient $client;
     private array $params;
     private string $jsonApi;

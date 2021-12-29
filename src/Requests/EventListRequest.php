@@ -6,7 +6,6 @@ namespace Fykosak\FKSDBDownloaderCore\Requests;
 
 class EventListRequest implements Request
 {
-
     private array $eventTypeIds;
 
     public function __construct(array $eventTypeIds)

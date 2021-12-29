@@ -8,7 +8,6 @@ use Fykosak\FKSDBDownloaderCore\Requests\Request;
 
 abstract class AbstractResultsRequest implements Request
 {
-
     protected string $contestName;
     protected int $year;
 

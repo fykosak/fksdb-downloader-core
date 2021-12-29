@@ -6,7 +6,6 @@ namespace Fykosak\FKSDBDownloaderCore\Requests;
 
 class OrganizersRequest implements Request
 {
-
     private int $contestId;
     private ?int $year;
 

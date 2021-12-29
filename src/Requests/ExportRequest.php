@@ -6,7 +6,6 @@ namespace Fykosak\FKSDBDownloaderCore\Requests;
 
 class ExportRequest implements Request
 {
-
     private string $qid;
     private array $parameters;
     private int $formatVersion;

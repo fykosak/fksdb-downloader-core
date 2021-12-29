@@ -6,7 +6,6 @@ namespace Fykosak\FKSDBDownloaderCore\Requests;
 
 class SignaturesRequest implements Request
 {
-
     private int $contestId;
 
     public function __construct(int $contestId)

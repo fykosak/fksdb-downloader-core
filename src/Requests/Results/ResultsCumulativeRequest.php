@@ -6,7 +6,6 @@ namespace Fykosak\FKSDBDownloaderCore\Requests\Results;
 
 class ResultsCumulativeRequest extends AbstractResultsRequest
 {
-
     private array $series;
 
     public function __construct(string $contestName, int $year, array $series)

@@ -6,7 +6,6 @@ namespace Fykosak\FKSDBDownloaderCore\Requests\Results;
 
 class ResultsDetailRequest extends AbstractResultsRequest
 {
-
     private int $series;
 
     public function __construct(string $contestName, int $year, int $series)
