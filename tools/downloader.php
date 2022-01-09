@@ -19,7 +19,6 @@ return function (Request $request, bool $soap = true) use ($downloader): ?string
             header('Content-Type: text/json');
             return $downloader->downloadJSON($request);
         }
-
     } catch (Throwable $exception) {
         var_dump($exception);
     }

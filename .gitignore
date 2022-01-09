@@ -1,4 +1,4 @@
 /vendor/
 /tools/
-!/tools/index.php
+!/tools/downloader.php
 !/tools/pass.php.example

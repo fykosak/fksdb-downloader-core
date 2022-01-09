@@ -1,5 +1,8 @@
 <?php
-define('FKSDB_USER', '');
-define('FKSDB_PASS', '');
-define('FKSDB_WSDL', '');
-define('FKSDB_API', '');
+
+declare(strict_types=1);
+
+const FKSDB_USER = '';
+const FKSDB_PASS = '';
+const FKSDB_WSDL = '';
+const FKSDB_API = '';
