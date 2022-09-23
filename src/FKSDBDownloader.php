@@ -88,7 +88,7 @@ class FKSDBDownloader
         );
         restore_error_handler();
         if ($result === false) {
-            $result = error_get_last();
+            $result = error_get_last()['message'];
         }
         return $result;
     }
