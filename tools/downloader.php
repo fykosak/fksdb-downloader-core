@@ -16,7 +16,7 @@ $newDownloader = new Downloader([
         'password' => FKSDB_PASS,
     ],
 ]);
-echo $newDownloader->download('fksdb', 'GetOrganizers', ['contest_id' => 1, 'year' => 37]);
+var_dump($newDownloader->download('fksdb', 'GetOrganizers', ['contest_id' => 1, 'year' => 37]));
 return $newDownloader;
 /*
 return function (Request $request, bool $soap = true) use ($new): ?string {

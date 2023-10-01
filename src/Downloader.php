@@ -7,8 +7,6 @@ namespace Fykosak\FKSDBDownloaderCore;
 use JsonSchema\Constraints\Constraint;
 use JsonSchema\Validator;
 
-require __DIR__ . '/../vendor/autoload.php';
-
 class Downloader
 {
     private array $config;
@@ -19,27 +17,26 @@ class Downloader
     }
 
     /**
-     * @return mixed
      * @throws DownloaderException
      */
-    public function download(string $app, string $source, array $arguments)
+    public function download(string $app, string $source, array $arguments): array
     {
         $config = $this->config[$app];
         $this->validateRequest($arguments, $app, $source);
 
         $options = [
             'http' => [
-                'header' => "Content-type: application/x-www-form-urlencoded\r\n" .
+                'header' => "Content-type: application/json\r\n" .
+                    "Accept: application/json\r\n" .
                     "Authorization: Basic " . base64_encode($config['username'] . ':' . $config['password']),
                 'method' => 'GET',
-                'content' => http_build_query($arguments),
+                'content' => json_encode($arguments),
             ],
         ];
         $context = stream_context_create($options);
 
         $result = file_get_contents(
-            $this->config[$app]['url'] . $source
-            . '?' . http_build_query($arguments),
+            $this->config[$app]['url'] . $source,
             false,
             $context
         );
@@ -47,18 +44,24 @@ class Downloader
             restore_error_handler();
             throw new DownloaderException(error_get_last()['message']);
         }
-        $this->validateResponse(json_decode($result), $app, $source);
-        return $result;
+        $data = json_decode($result, true);
+        $this->validateResponse($data, $app, $source);
+        return $data;
     }
 
     /**
      * @throws DownloaderException
      */
-    private function validateRequest(array $arguments, string $app, string $source): void
+    public function validateRequest(array $arguments, string $app, string $source): void
     {
-        $this->validate(__DIR__ . DIRECTORY_SEPARATOR .
+        $this->validate($this->resolveDir($app, $source) . '/request.json', $arguments);
+    }
+
+    private function resolveDir(string $app, string $source): string
+    {
+        return __DIR__ . DIRECTORY_SEPARATOR .
             $app . DIRECTORY_SEPARATOR .
-            $source . DIRECTORY_SEPARATOR . 'request.json', $arguments);
+            $source;
     }
 
     /**
@@ -90,10 +93,8 @@ class Downloader
     /**
      * @throws DownloaderException
      */
-    private function validateResponse(array $arguments, string $app, string $source): void
+    public function validateResponse(array $arguments, string $app, string $source): void
     {
-        $this->validate(__DIR__ . DIRECTORY_SEPARATOR .
-            $app . DIRECTORY_SEPARATOR .
-            $source . DIRECTORY_SEPARATOR . 'response.json', $arguments);
+        $this->validate($this->resolveDir($app, $source) . '/response.json', $arguments);
     }
 }
