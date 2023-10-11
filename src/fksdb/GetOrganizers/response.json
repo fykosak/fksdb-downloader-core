@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "name": {
+        "type": "string"
+      },
+      "personId": {
+        "type": "integer",
+        "min": 0
+      },
+      "email": {
+        "type": [
+          "null",
+          "string"
+        ]
+      },
+      "academicDegreePrefix": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "academicDegreeSuffix": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "career": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "contribution": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "order": {
+        "type": "integer",
+        "min": 0,
+        "max": 10
+      },
+      "role": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "since": {
+        "type": "integer"
+      },
+      "until": {
+        "type": [
+          "integer",
+          "null"
+        ]
+      },
+      "texSignature": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "domainAlias": {
+        "type": [
+          "string",
+          "null"
+        ]
+      }
+    }
+  }
+}
