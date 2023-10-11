@@ -80,7 +80,6 @@ class Downloader
             } else {
                 $errors = '';
                 foreach ($validator->getErrors() as $error) {
-                    var_dump($error);
                     $errors .= join(', ', $error);
                 }
                 throw new DownloaderException($errors);

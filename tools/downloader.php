@@ -16,20 +16,5 @@ $newDownloader = new Downloader([
         'password' => FKSDB_PASS,
     ],
 ]);
-var_dump($newDownloader->download('fksdb', 'GetOrganizers', ['contest_id' => 1, 'year' => 37]));
+
 return $newDownloader;
-/*
-return function (Request $request, bool $soap = true) use ($new): ?string {
-    try {
-        if ($soap) {
-            header('Content-Type: text/xml');
-            return $downloader->download($request);
-        } else {
-            header('Content-Type: text/json');
-            return $downloader->downloadJSON($request);
-        }
-    } catch (Throwable $exception) {
-        var_dump($exception);
-    }
-    return null;
-};*/

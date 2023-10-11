@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "name": {
+        "type": "string"
+      },
+      "loginId": {
+        "type": [
+          "integer",
+          "null"
+        ]
+      },
+      "login": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "hash": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "email": {
+        "type": "string"
+      },
+      "roles": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "enum": [
+            "taskManager",
+            "dataManager",
+            "eventManager",
+            "inboxManager",
+            "boss",
+            "org",
+            "contestant",
+            "aesop",
+            "schoolManager",
+            "web",
+            "wiki",
+            "superuser",
+            "cartesian"
+          ]
+        }
+      }
+    }
+  }
+}
