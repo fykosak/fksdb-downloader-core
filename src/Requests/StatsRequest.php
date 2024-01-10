@@ -17,7 +17,7 @@ class StatsRequest implements Request
 
     public function getMethod(): string
     {
-        return 'GetStats';
+        return 'contests/' . $this->contestId . '/years/' . $this->year . '/stats';
     }
 
     public function getParams(): array
@@ -30,6 +30,6 @@ class StatsRequest implements Request
 
     public function getCacheKey(): string
     {
-        return sprintf('task.stats.%s.%s', $this->contestId, $this->year);
+        return sprintf('task-stats.%s.%s', $this->contestId, $this->year);
     }
 }
