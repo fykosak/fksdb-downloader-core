@@ -17,24 +17,19 @@ class OrganizersRequest implements Request
 
     public function getMethod(): string
     {
-        return 'GetOrganizers';
+        return 'contests/' . $this->contestId . '/organizers';
     }
 
+    /**
+     * @phpstan-return array{year?:int}
+     */
     public function getParams(): array
     {
-        if (isset($this->year)) {
-            return [
-                'contestId' => $this->contestId,
-                'year' => $this->year,
-            ];
-        }
-        return [
-            'contestId' => $this->contestId,
-        ];
+        return isset($this->year) ? ['year' => $this->year] : [];
     }
 
     public function getCacheKey(): string
     {
-        return sprintf('orgs.%s-%s', $this->contestId, $this->year ?? 'all');
+        return sprintf('organizers.%s-%s', $this->contestId, $this->year ?? 'all');
     }
 }
