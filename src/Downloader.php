@@ -10,22 +10,27 @@ class Downloader
 {
     private array $config;
 
-    public function __construct(array $config)
+    private string $url;
+    private string $username;
+    private string $password;
+
+    public function __construct(string $url, string $username, string $password)
     {
-        $this->config = $config;
+        $this->url = $url;
+        $this->username = $username;
+        $this->password = $password;
     }
 
     /**
      * @throws DownloaderException
      */
-    public function download(string $app, Request $request): array
+    public function download(Request $request): array
     {
-        $config = $this->config[$app];
         $options = [
             'http' => [
                 'header' => "Content-type: application/json\r\n" .
                     "Accept: application/json\r\n" .
-                    "Authorization: Basic " . base64_encode($config['username'] . ':' . $config['password']),
+                    "Authorization: Basic " . base64_encode($this->username . ':' . $this->password),
                 'method' => 'GET',
                 'content' => json_encode($request->getParams()),
             ],
@@ -33,7 +38,7 @@ class Downloader
         $context = stream_context_create($options);
 
         $result = file_get_contents(
-            $this->config[$app]['url'] . $request->getMethod(),
+            $this->url . $request->getMethod(),
             false,
             $context
         );
