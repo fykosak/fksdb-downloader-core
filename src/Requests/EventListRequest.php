@@ -34,6 +34,6 @@ class EventListRequest implements Request
 
     public function getMethod(): string
     {
-        return 'events';
+        return 'events/';
     }
 }
