@@ -8,18 +8,16 @@ class SeriesResultsRequest implements Request
 {
     private int $contestId;
     private int $year;
-    private int $series;
 
-    public function __construct(int $contestId, int $year, int $series)
+    public function __construct(int $contestId, int $year)
     {
         $this->contestId = $contestId;
         $this->year = $year;
-        $this->series = $series;
     }
 
     public function getMethod(): string
     {
-        return 'GetSeriesResults';
+        return sprintf('contests/%d/years/%d/results', $this->contestId, $this->year);
     }
 
     public function getParams(): array
@@ -27,12 +25,11 @@ class SeriesResultsRequest implements Request
         return [
             'contestId' => $this->contestId,
             'year' => $this->year,
-            'series' => $this->series,
         ];
     }
 
     public function getCacheKey(): string
     {
-        return sprintf('series.results.%s.%s.%s', $this->contestId, $this->year, $this->series);
+        return sprintf('series.results.%s.%s', $this->contestId, $this->year);
     }
 }
