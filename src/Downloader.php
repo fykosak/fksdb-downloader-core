@@ -10,7 +10,8 @@ abstract class Downloader
 {
     public function __construct(
         protected string $url,
-    ) {}
+    ) {
+    }
 
     abstract protected function getOptions(Request $request): array;
 
