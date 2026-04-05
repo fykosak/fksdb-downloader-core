@@ -6,27 +6,34 @@ namespace Fykosak\FKSDBDownloaderCore\Requests;
 
 class EventListRequest implements Request
 {
-    private array $eventTypeIds;
+    /** @var int[] */
+    private array $eventTypes;
 
-    public function __construct(array $eventTypeIds)
+    /**
+     * @param int[] $eventTypes
+     */
+    public function __construct(array $eventTypes)
     {
-        $this->eventTypeIds = $eventTypeIds;
+        $this->eventTypes = $eventTypes;
     }
 
+    /**
+     * @phpstan-return array{eventTypes:int[]}
+     */
     public function getParams(): array
     {
         return [
-            'eventTypeIds' => $this->eventTypeIds,
+            'eventTypes' => $this->eventTypes,
         ];
     }
 
     public function getCacheKey(): string
     {
-        return sprintf('eventList.%s', join('-', $this->eventTypeIds));
+        return sprintf('event-list.%s', join('-', $this->eventTypes));
     }
 
     public function getMethod(): string
     {
-        return 'GetEventList';
+        return 'events/';
     }
 }

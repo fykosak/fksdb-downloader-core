@@ -4,18 +4,18 @@ declare(strict_types=1);
 
 namespace Fykosak\FKSDBDownloaderCore\Requests;
 
-class EventRequest implements Request
+class ParticipantsRequest implements Request
 {
-    protected int $eventId;
+    private int $eventId;
 
     public function __construct(int $eventId)
     {
         $this->eventId = $eventId;
     }
 
-    public function getCacheKey(): string
+    public function getMethod(): string
     {
-        return sprintf('eventDetail.%s', $this->eventId);
+        return 'events/' . $this->eventId . '/participants';
     }
 
     public function getParams(): array
@@ -25,8 +25,8 @@ class EventRequest implements Request
         ];
     }
 
-    final public function getMethod(): string
+    public function getCacheKey(): string
     {
-        return 'events/' . $this->eventId;
+        return sprintf('participant-list.%d', $this->eventId);
     }
 }
